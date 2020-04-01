@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "58a8adf2d34f16413b554243581b0157",
+    "revision": "706cafa2b45ecd13cb19303cd651c5da",
     "url": "/alexey-oblomov/aviasales_test_task/index.html"
   },
   {
-    "revision": "1b2ed0a9e865593a4ad2",
+    "revision": "7755cf287ed7b0de2a1c",
     "url": "/alexey-oblomov/aviasales_test_task/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1b2ed0a9e865593a4ad2",
-    "url": "/alexey-oblomov/aviasales_test_task/static/js/main.7c3ca619.chunk.js"
+    "revision": "7755cf287ed7b0de2a1c",
+    "url": "/alexey-oblomov/aviasales_test_task/static/js/main.495335c1.chunk.js"
   },
   {
     "revision": "5638c55ba77bfc25d561",

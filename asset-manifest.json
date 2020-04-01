@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/alexey-oblomov/aviasales_test_task/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/alexey-oblomov/aviasales_test_task/static/js/main.7c3ca619.chunk.js",
-    "main.js.map": "/alexey-oblomov/aviasales_test_task/static/js/main.7c3ca619.chunk.js.map",
+    "main.js": "/alexey-oblomov/aviasales_test_task/static/js/main.495335c1.chunk.js",
+    "main.js.map": "/alexey-oblomov/aviasales_test_task/static/js/main.495335c1.chunk.js.map",
     "runtime-main.js": "/alexey-oblomov/aviasales_test_task/static/js/runtime-main.418d5ce0.js",
     "runtime-main.js.map": "/alexey-oblomov/aviasales_test_task/static/js/runtime-main.418d5ce0.js.map",
     "static/js/2.d0eb3d98.chunk.js": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js",
     "static/js/2.d0eb3d98.chunk.js.map": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js.map",
     "index.html": "/alexey-oblomov/aviasales_test_task/index.html",
-    "precache-manifest.730360d2c8b9eacf14ec3920a3364ddf.js": "/alexey-oblomov/aviasales_test_task/precache-manifest.730360d2c8b9eacf14ec3920a3364ddf.js",
+    "precache-manifest.947424bede78b67d3db49b0c4fb56f1a.js": "/alexey-oblomov/aviasales_test_task/precache-manifest.947424bede78b67d3db49b0c4fb56f1a.js",
     "service-worker.js": "/alexey-oblomov/aviasales_test_task/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/alexey-oblomov/aviasales_test_task/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.d0eb3d98.chunk.js.LICENSE.txt": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.418d5ce0.js",
     "static/js/2.d0eb3d98.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.7c3ca619.chunk.js"
+    "static/js/main.495335c1.chunk.js"
   ]
 }
