@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f08e7c5ea817665fa8855f3f515c548f",
+    "revision": "66c31a16535200e5fb2ba82722407535",
     "url": "/alexey-oblomov/aviasales_test_task/index.html"
   },
   {
