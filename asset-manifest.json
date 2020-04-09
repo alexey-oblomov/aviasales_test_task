@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/alexey-oblomov/aviasales_test_task/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/alexey-oblomov/aviasales_test_task/static/js/main.495335c1.chunk.js",
-    "main.js.map": "/alexey-oblomov/aviasales_test_task/static/js/main.495335c1.chunk.js.map",
+    "main.css": "/alexey-oblomov/aviasales_test_task/static/css/main.e65a088c.chunk.css",
+    "main.js": "/alexey-oblomov/aviasales_test_task/static/js/main.ff27ebce.chunk.js",
+    "main.js.map": "/alexey-oblomov/aviasales_test_task/static/js/main.ff27ebce.chunk.js.map",
     "runtime-main.js": "/alexey-oblomov/aviasales_test_task/static/js/runtime-main.418d5ce0.js",
     "runtime-main.js.map": "/alexey-oblomov/aviasales_test_task/static/js/runtime-main.418d5ce0.js.map",
-    "static/js/2.d0eb3d98.chunk.js": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js",
-    "static/js/2.d0eb3d98.chunk.js.map": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js.map",
+    "static/js/2.9d792562.chunk.js": "/alexey-oblomov/aviasales_test_task/static/js/2.9d792562.chunk.js",
+    "static/js/2.9d792562.chunk.js.map": "/alexey-oblomov/aviasales_test_task/static/js/2.9d792562.chunk.js.map",
     "index.html": "/alexey-oblomov/aviasales_test_task/index.html",
-    "precache-manifest.947424bede78b67d3db49b0c4fb56f1a.js": "/alexey-oblomov/aviasales_test_task/precache-manifest.947424bede78b67d3db49b0c4fb56f1a.js",
+    "precache-manifest.ef43a011fd9540b13a82e3e22300c735.js": "/alexey-oblomov/aviasales_test_task/precache-manifest.ef43a011fd9540b13a82e3e22300c735.js",
     "service-worker.js": "/alexey-oblomov/aviasales_test_task/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/alexey-oblomov/aviasales_test_task/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.d0eb3d98.chunk.js.LICENSE.txt": "/alexey-oblomov/aviasales_test_task/static/js/2.d0eb3d98.chunk.js.LICENSE.txt"
+    "static/css/main.e65a088c.chunk.css.map": "/alexey-oblomov/aviasales_test_task/static/css/main.e65a088c.chunk.css.map",
+    "static/js/2.9d792562.chunk.js.LICENSE.txt": "/alexey-oblomov/aviasales_test_task/static/js/2.9d792562.chunk.js.LICENSE.txt",
+    "static/media/header.css": "/alexey-oblomov/aviasales_test_task/static/media/Logo.d2a4807b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.418d5ce0.js",
-    "static/js/2.d0eb3d98.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.495335c1.chunk.js"
+    "static/js/2.9d792562.chunk.js",
+    "static/css/main.e65a088c.chunk.css",
+    "static/js/main.ff27ebce.chunk.js"
   ]
 }
