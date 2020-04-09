@@ -2,32 +2,38 @@
   "name": "app-timers",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://alexey-oblomov.github.io/timers/",
+  "homepage": "https://github.com/alexey-oblomov/aviasales_test_task",
   "dependencies": {
+    "@material-ui/core": "^4.9.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@typescript-eslint/eslint-plugin": "^2.25.1-alpha.5",
     "antd": "^4.0.4",
+    "axios": "^0.19.2",
     "babel-eslint": "^10.1.0",
     "gh-pages": "^2.2.0",
+    "lodash": "^4.17.15",
     "onchange": "^6.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "typescript-eslint": "0.0.1-alpha.0"
   },
   "scripts": {
-    "lint": "eslint --debug \"**/*.{jsx,js}\"",
-    "lint:write": "eslint \"**/*.{jsx,js}\" --fix",
+    "lint": "eslint --debug \"**/*.{jsx, js, html, css}\"",
+    "lint:write": "eslint \"**/*.{jsx, js, html, css}\" --fix",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier \"**/*.{jsx,js}\"",
-    "prettier-watch": "onchange \"**/*.{jsx,js}\" -- prettier --write {{changed}}"
+    "prettier": "prettier \"**/*.{jsx, js, html, css}\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -65,7 +71,7 @@
   "lint-staged": {
     "**/*.{jsx,js}": [
       "npm run lint",
-      "npm run prettier --fix"    
+      "npm run prettier --fix"
     ]
   }
 }
