@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/alexey-oblomov/aviasales_test_task/precache-manifest.ba8e6cf96fb6b307991967ef3136ca34.js"
+  "/alexey-oblomov/aviasales_test_task/precache-manifest.7ff8fc07e555c97d7d7236a5a7eb89d1.js"
 );
 
 self.addEventListener('message', (event) => {
