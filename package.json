@@ -2,7 +2,7 @@
   "name": "app-timers",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/alexey-oblomov/aviasales_test_task",
+  "homepage": "http://alexey-oblomov.github.io/aviasales_test_task/",
   "dependencies": {
     "@material-ui/core": "^4.9.9",
     "@testing-library/jest-dom": "^4.2.4",

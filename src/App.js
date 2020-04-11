@@ -3,12 +3,20 @@ import './app.css';
 import Header from './components/header/header';
 import FilterTransfers from './components/filter_transfers/flter_transfers';
 import MainWindow from './components/main_window/main_window';
-import { getSearchId, getOnePackTickets } from './utils/request';
+import {
+  getSearchId,
+  getOnePackTickets,
+  sortByPrice,
+  sortByDuration,
+  toggleClassBtnActive,
+} from './utils/request';
 
 class App extends React.Component {
   state = {
     tickets: [],
     displayTickets: [],
+    numberOfDisplayed: 50,
+    filterStops: [1, 2],
   };
 
   processingAllTickets = () => {
@@ -25,14 +33,15 @@ class App extends React.Component {
         const { stop, tickets } = response;
         if (stop === false) {
           this.proccesingCurrenthPack(tickets);
-          console.log('Обычная обработка, кладем пачку в дисплей');
           this.moveItemsToDisplayTickets();
           this.getAllTickets(id);
         } else if (stop === true) {
           this.proccesingCurrenthPack(tickets);
-          console.log('Последняя обработка, кладем пачку в дисплей');
-          this.moveItemsToDisplayTickets();
-          console.log('Стоп! Кончились билеты. ', stop);
+          this.filterStops();
+          console.log(
+            'Стоп! Кончились билеты. Всего билетов получено: ',
+            this.state.tickets.length
+          );
           return;
         }
       }
@@ -43,25 +52,51 @@ class App extends React.Component {
     const oldValue = this.state.tickets;
     console.log('Получаем пачку. Количество билетов: ', tickets.length);
     const newValue = [...oldValue, ...tickets];
+    sortByPrice(newValue);
     this.setState({
       tickets: newValue,
     });
   };
 
-  moveItemsToDisplayTickets = () => {
-    const currentTickets = this.state.tickets;
+  moveItemsToDisplayTickets = (array = this.state.tickets) => {
+    const { numberOfDisplayed } = this.state;
     let newValue = [];
-    for (let i = 0; i < 15; i++) {
-      newValue.push(currentTickets[i]);
+    for (let i = 0; i < numberOfDisplayed; i++) {
+      newValue.push(array[i]);
     }
     this.setState({
       displayTickets: newValue,
     });
   };
 
+  handleSortByPrice = (event) => {
+    toggleClassBtnActive(event);
+    const { tickets } = this.state;
+    sortByPrice(tickets);
+    this.filterStops();
+  };
+
+  handleSortByDuration = (event) => {
+    toggleClassBtnActive(event);
+    const { tickets } = this.state;
+    sortByDuration(tickets);
+    this.filterStops();
+  };
+
   componentDidMount() {
     this.processingAllTickets();
   }
+
+  filterStops = () => {
+    console.log('Запускаем фильтр');
+    const { tickets, filterStops } = this.state;
+    let result = [];
+    for (let i = 0; i < filterStops.length; i += 1) {
+      result = result.concat(tickets.filter((item) => item['segments'][0]['stops'].length === filterStops[i]));
+    }
+    this.moveItemsToDisplayTickets(result);
+    return;
+  };
 
   render() {
     const { displayTickets } = this.state;
@@ -77,7 +112,11 @@ class App extends React.Component {
               <FilterTransfers />
             </div>
             <div className="right-aside">
-              <MainWindow displayTickets={displayTickets} />
+              <MainWindow
+                displayTickets={displayTickets}
+                handleSortByPrice={this.handleSortByPrice}
+                handleSortByDuration={this.handleSortByDuration}
+              />
             </div>
           </div>
         </div>
