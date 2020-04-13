@@ -3,5 +3,11 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import App from './app';
+import { ErrorBoundary } from './components/errorBoundary/errorBoundary.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>,
+  document.getElementById('root')
+);

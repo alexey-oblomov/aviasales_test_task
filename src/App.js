@@ -1,8 +1,9 @@
 import React from 'react';
 import './app.css';
 import Header from './components/header/header';
-import FilterTransfers from './components/filter_transfers/flter_transfers';
+import FilterByStopstops from './components/filter_transfers/flter_transfers';
 import MainWindow from './components/main_window/main_window';
+
 import {
   getSearchId,
   getOnePackTickets,
@@ -15,9 +16,19 @@ class App extends React.Component {
   state = {
     tickets: [],
     displayTickets: [],
-    numberOfDisplayed: 50,
-    filterStops: [1, 2],
+    numberOfDisplayed: 5,
+    stops: {
+      all: true,
+      noStops: true,
+      oneStop: true,
+      twoStops: true,
+      threeStops: true,
+    },
   };
+
+  componentDidMount() {
+    this.processingAllTickets();
+  }
 
   processingAllTickets = () => {
     getSearchId().then((id) => {
@@ -37,12 +48,10 @@ class App extends React.Component {
           this.getAllTickets(id);
         } else if (stop === true) {
           this.proccesingCurrenthPack(tickets);
-          this.filterStops();
           console.log(
             'Стоп! Кончились билеты. Всего билетов получено: ',
             this.state.tickets.length
           );
-          return;
         }
       }
     });
@@ -52,6 +61,7 @@ class App extends React.Component {
     const oldValue = this.state.tickets;
     console.log('Получаем пачку. Количество билетов: ', tickets.length);
     const newValue = [...oldValue, ...tickets];
+    this.filterByStops();
     sortByPrice(newValue);
     this.setState({
       tickets: newValue,
@@ -73,34 +83,114 @@ class App extends React.Component {
     toggleClassBtnActive(event);
     const { tickets } = this.state;
     sortByPrice(tickets);
-    this.filterStops();
+    this.filterByStops();
   };
 
   handleSortByDuration = (event) => {
     toggleClassBtnActive(event);
     const { tickets } = this.state;
     sortByDuration(tickets);
-    this.filterStops();
+    this.filterByStops();
   };
 
-  componentDidMount() {
-    this.processingAllTickets();
-  }
+  handleFilter = (event) => {
+    const theStop = event.currentTarget.id;
+    const { stops } = this.state;
+    const { all, noStops, oneStop, twoStops, threeStops } = stops;
 
-  filterStops = () => {
-    console.log('Запускаем фильтр');
-    const { tickets, filterStops } = this.state;
-    let result = [];
-    for (let i = 0; i < filterStops.length; i += 1) {
-      result = result.concat(tickets.filter((item) => item['segments'][0]['stops'].length === filterStops[i]));
+    const stopsStateChange = (theStop) => {
+      if (theStop === 'all' && all === false) {
+        return {
+          ...stops,
+          all: true,
+          noStops: true,
+          oneStop: true,
+          twoStops: true,
+          threeStops: true,
+        };
+      }
+
+      const stopsStatus = {
+        noStops: { ...stops, noStops: !noStops, all: false },
+        oneStop: { ...stops, oneStop: !oneStop, all: false },
+        twoStops: { ...stops, twoStops: !twoStops, all: false },
+        threeStops: { ...stops, threeStops: !threeStops, all: false },
+        all: {
+          ...stops,
+          all: false,
+          noStops: false,
+          oneStop: false,
+          twoStops: false,
+          threeStops: false,
+        },
+      };
+
+      for (let key in stopsStatus) {
+        if (key === theStop) {
+          return stopsStatus[key];
+        }
+      }
+    };
+
+    let newStops = stopsStateChange(theStop);
+
+    if (
+      newStops.all === false &&
+      newStops.noStops === true &&
+      newStops.oneStop === true &&
+      newStops.twoStops === true &&
+      newStops.threeStops === true
+    ) {
+      newStops = {
+        ...stops,
+        all: true,
+        noStops: true,
+        oneStop: true,
+        twoStops: true,
+        threeStops: true,
+      };
     }
+    this.setState({ stops: newStops });
+  };
+
+  stopFilter = () => {
+    let arrayForFilter = [];
+    const currentStopsState = this.state.stops;
+    for (let key in currentStopsState) {
+      if (currentStopsState[key] === true) {
+        arrayForFilter = [...arrayForFilter, key];
+      }
+    }
+    const stopsCount = {
+      noStops: 0,
+      oneStop: 1,
+      twoStops: 2,
+      threeStops: 3,
+    };
+    arrayForFilter = arrayForFilter.map((item) => stopsCount[item]);
+    return arrayForFilter;
+  };
+
+  filterByStops = () => {
+    const { tickets } = this.state;
+    const checkArr = this.stopFilter();
+
+    function contains(arr, elem) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === elem) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    const result = tickets.filter((item) => contains(checkArr, item['segments'][0].stops.length));
     this.moveItemsToDisplayTickets(result);
     return;
   };
 
   render() {
-    const { displayTickets } = this.state;
-
+    const { displayTickets, stops } = this.state;
     return (
       <div className="wrapper">
         <div className="app">
@@ -109,7 +199,7 @@ class App extends React.Component {
           </div>
           <div className="main">
             <div className="left-aside">
-              <FilterTransfers />
+              <FilterByStopstops handleFilter={this.handleFilter} stopsData={stops} />
             </div>
             <div className="right-aside">
               <MainWindow
