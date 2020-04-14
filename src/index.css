@@ -15,3 +15,7 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+body {
+  background: #f3f7fa;
+}

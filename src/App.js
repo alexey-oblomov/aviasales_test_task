@@ -1,16 +1,20 @@
 import React from 'react';
 import './app.css';
 import Header from './components/header/header';
-import FilterByStopstops from './components/filter_transfers/flter_transfers';
-import MainWindow from './components/main_window/main_window';
-
+import FilterStops from './components/filterStops/flterStops';
+import NumberOfTicketsPanel from './components/numberOfTicketsPanel/numberOfTicketsPanel';
+import SortingPanel from './components/sortingPanel/sortingPanel';
+import { ListTickets } from './components/listTickets/listTickets';
+import NoTickets from './components/listTickets/noTickets';
+import CurrencyPanel from './components/currencyPanel/currencyPanel';
 import {
   getSearchId,
   getOnePackTickets,
   sortByPrice,
   sortByDuration,
   toggleClassBtnActive,
-} from './utils/request';
+  getCurrencyFromCB,
+} from './utils/utils';
 
 class App extends React.Component {
   state = {
@@ -24,10 +28,13 @@ class App extends React.Component {
       twoStops: true,
       threeStops: true,
     },
+    currencyExchange: {},
+    currencyDisplayed: 'RUB',
   };
 
   componentDidMount() {
     this.processingAllTickets();
+    this.getCurrency();
   }
 
   processingAllTickets = () => {
@@ -68,15 +75,53 @@ class App extends React.Component {
     });
   };
 
+  getCurrency = () => {
+    getCurrencyFromCB().then((response) => {
+      const currencyDate = response.data.Date;
+      const usd = response.data.Valute.USD.Value;
+      const eur = response.data.Valute.EUR.Value;
+      const currencyExchange = { date: currencyDate, usd, eur };
+      this.setState({
+        currencyExchange,
+      });
+    });
+  };
+
   moveItemsToDisplayTickets = (array = this.state.tickets) => {
     const { numberOfDisplayed } = this.state;
     let newValue = [];
     for (let i = 0; i < numberOfDisplayed; i++) {
-      newValue.push(array[i]);
+      if (array[i]) {
+        newValue.push(array[i]);
+      }
     }
     this.setState({
       displayTickets: newValue,
     });
+  };
+
+  handleChangeNumberOfDisplated = (event) => {
+    const id = Number(event.currentTarget.id);
+    this.setState(
+      {
+        numberOfDisplayed: id,
+      },
+      () => {
+        this.filterByStops();
+      }
+    );
+  };
+
+  handleChangeCurrency = (event) => {
+    const id = event.currentTarget.id;
+    this.setState(
+      {
+        currencyDisplayed: id,
+      },
+      () => {
+        this.filterByStops();
+      }
+    );
   };
 
   handleSortByPrice = (event) => {
@@ -95,7 +140,7 @@ class App extends React.Component {
 
   handleFilter = (event) => {
     const theStop = event.currentTarget.id;
-    const { stops } = this.state;
+    const { stops, tickets } = this.state;
     const { all, noStops, oneStop, twoStops, threeStops } = stops;
 
     const stopsStateChange = (theStop) => {
@@ -150,7 +195,10 @@ class App extends React.Component {
         threeStops: true,
       };
     }
-    this.setState({ stops: newStops });
+    this.setState({ stops: newStops }, () => {
+      sortByDuration(tickets);
+      this.filterByStops();
+    });
   };
 
   stopFilter = () => {
@@ -190,24 +238,47 @@ class App extends React.Component {
   };
 
   render() {
-    const { displayTickets, stops } = this.state;
+    const {
+      displayTickets,
+      stops,
+      numberOfDisplayed,
+      currencyExchange,
+      currencyDisplayed,
+    } = this.state;
+    const tickets = displayTickets.length ? (
+      <ListTickets
+        displayTickets={displayTickets}
+        currencyExchange={currencyExchange}
+        currencyDisplayed={currencyDisplayed}
+      />
+    ) : (
+      <NoTickets />
+    );
+
     return (
-      <div className="wrapper">
-        <div className="app">
-          <div className="header">
-            <Header />
+      <div className="app">
+        <div className="header">
+          <Header />
+        </div>
+        <div className="main">
+          <div className="left-aside">
+            <FilterStops handleFilter={this.handleFilter} stopsData={stops} />
+            <NumberOfTicketsPanel
+              handleChange={this.handleChangeNumberOfDisplated}
+              numberOfDisplayed={numberOfDisplayed}
+            />
+            <CurrencyPanel
+              currencyExchange={currencyExchange}
+              currencyDisplayed={currencyDisplayed}
+              handleChangeCurrency={this.handleChangeCurrency}
+            />
           </div>
-          <div className="main">
-            <div className="left-aside">
-              <FilterByStopstops handleFilter={this.handleFilter} stopsData={stops} />
-            </div>
-            <div className="right-aside">
-              <MainWindow
-                displayTickets={displayTickets}
-                handleSortByPrice={this.handleSortByPrice}
-                handleSortByDuration={this.handleSortByDuration}
-              />
-            </div>
+          <div className="right-aside">
+            <SortingPanel
+              handleSortByPrice={this.handleSortByPrice}
+              handleSortByDuration={this.handleSortByDuration}
+            />
+            {tickets}
           </div>
         </div>
       </div>
