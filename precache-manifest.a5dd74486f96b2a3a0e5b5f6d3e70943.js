@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "351932a72010a02a4240bd8acaaa633a",
+    "revision": "6d5b3fc33ada7a04343dcf75bf39ea72",
     "url": "/aviasales_test_task/index.html"
   },
   {
-    "revision": "5bb5c02e59d2319aa722",
-    "url": "/aviasales_test_task/static/css/main.ce783584.chunk.css"
+    "revision": "26be6ea86740b288246f",
+    "url": "/aviasales_test_task/static/css/main.847430a9.chunk.css"
   },
   {
-    "revision": "8d0425ec7daf4a2712c8",
-    "url": "/aviasales_test_task/static/js/2.260b2caf.chunk.js"
+    "revision": "1a26c018c5b052247f77",
+    "url": "/aviasales_test_task/static/js/2.037d0e22.chunk.js"
   },
   {
     "revision": "90565ba0b43e1b95d2876295dfd7014d",
-    "url": "/aviasales_test_task/static/js/2.260b2caf.chunk.js.LICENSE.txt"
+    "url": "/aviasales_test_task/static/js/2.037d0e22.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5bb5c02e59d2319aa722",
-    "url": "/aviasales_test_task/static/js/main.1fc517a6.chunk.js"
+    "revision": "26be6ea86740b288246f",
+    "url": "/aviasales_test_task/static/js/main.5eda9879.chunk.js"
   },
   {
     "revision": "39a6c036449a5c222cce",
