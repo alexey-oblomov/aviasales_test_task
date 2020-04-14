@@ -1,0 +1,13 @@
+.header-wrapper {
+    height: 160px;
+    padding-top: 50px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url("./logo/Logo.png");
+    background-position: center;
+}

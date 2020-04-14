@@ -1,0 +1,25 @@
+.app {
+  background: #f3f7fa;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  text-align: center;
+  padding-bottom: 20px;
+  height: 100%;
+}
+
+.left-aside {
+  flex: 1 1 auto;
+  align-self: flex-start;
+  width: 230px;
+  height: 100%;
+}
+
+.right-aside {
+  width: 500px;
+  flex: 1 1 auto;
+  align-self: flex-start;
+  height: 100%;
+}
