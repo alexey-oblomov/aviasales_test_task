@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   getStopsNumber,
   displayPrice,
@@ -8,13 +9,10 @@ import {
 import './ticket.css';
 
 export default function Ticket(props) {
-  const { ticket, currencyExchange, currencyDisplayed } = props;
-  if (!ticket) {
-    return <div></div>;
-  }
+  const { ticket, currencyData, currencyDisplayed } = props;
   const { carrier, segments } = ticket;
   let { price } = ticket;
-  const { usd, eur } = currencyExchange;
+  const { usd, eur } = currencyData;
   const carrierUrl = `http://pics.avs.io/99/36/${carrier}.png`;
   const segmentForward = segments[0];
   const {
@@ -111,3 +109,9 @@ export default function Ticket(props) {
     </div>
   );
 }
+
+Ticket.propTypes = {
+  ticket: PropTypes.object,
+  currencyData: PropTypes.object,
+  currencyDisplayed: PropTypes.string,
+};

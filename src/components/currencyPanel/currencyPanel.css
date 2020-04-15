@@ -7,8 +7,11 @@
   margin-right: 20px;
   margin-bottom: 20px;
   color: #4a4a4a;
+  display: flex;
+  flex-direction: column;
   align-content: flex-start;
-  padding: 20px;
+  justify-content: flex-start;
+  padding: 10px;
 }
 
 .currencyPanel-heading {
@@ -18,25 +21,25 @@
   font-size: 12px;
   line-height: 12px;
   letter-spacing: 0.5px;
-  margin: 20px;
   text-transform: uppercase;
   text-align: center;
   color: #4a4a4a;
+  margin-bottom: 5px;
 }
 
 .currencyPanel-text {
-  font-family: Open Sans;
+  font-family: "Open Sans";
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
   line-height: 20px;
   display: block;
-  margin: 10px 0;
+  margin-bottom: 5px;
 }
 
 .currencyPanel__inputs-block {
   display: flex;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .radiobox {

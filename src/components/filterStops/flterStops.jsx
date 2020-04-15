@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './filterStops.css';
 
 export default function FilterStops(props) {
-  const { handleFilter, stopsData } = props;
+  const { handleChangeFilterStops, stopsData } = props;
   return (
     <form className="form-checkbox">
       <div className="inputs-block">
@@ -14,7 +15,7 @@ export default function FilterStops(props) {
               className="checkbox__input"
               type="checkbox"
               id="all"
-              onChange={handleFilter}
+              onChange={handleChangeFilterStops}
               checked={stopsData.all}
             />
             <span className="checkbox__box"></span>
@@ -28,7 +29,7 @@ export default function FilterStops(props) {
               className="checkbox__input"
               type="checkbox"
               id="noStops"
-              onChange={handleFilter}
+              onChange={handleChangeFilterStops}
               checked={stopsData.noStops}
             />
             <span className="checkbox__box"></span>
@@ -42,7 +43,7 @@ export default function FilterStops(props) {
               className="checkbox__input"
               type="checkbox"
               id="oneStop"
-              onChange={handleFilter}
+              onChange={handleChangeFilterStops}
               checked={stopsData.oneStop}
             />
             <span className="checkbox__box"></span>1 пересадка
@@ -55,7 +56,7 @@ export default function FilterStops(props) {
               className="checkbox__input"
               type="checkbox"
               id="twoStops"
-              onChange={handleFilter}
+              onChange={handleChangeFilterStops}
               checked={stopsData.twoStops}
             />
             <span className="checkbox__box"></span>2 пересадки
@@ -68,7 +69,7 @@ export default function FilterStops(props) {
               className="checkbox__input"
               type="checkbox"
               id="threeStops"
-              onChange={handleFilter}
+              onChange={handleChangeFilterStops}
               checked={stopsData.threeStops}
             />
             <span className="checkbox__box"></span>3 пересадки
@@ -78,3 +79,8 @@ export default function FilterStops(props) {
     </form>
   );
 }
+
+FilterStops.propTypes = {
+  stopsData: PropTypes.object,
+  handleChangeFilterStops: PropTypes.func,
+};

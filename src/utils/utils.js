@@ -111,3 +111,23 @@ export function displayTime(time) {
   const minutes = time % 60;
   return `${hour}ч ${minutes}м `;
 }
+
+export function viewDate(date) {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const arr = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Ноябрь',
+    'Декабрь',
+  ];
+  return day + ' ' + arr[month] + ' ' + year;
+}

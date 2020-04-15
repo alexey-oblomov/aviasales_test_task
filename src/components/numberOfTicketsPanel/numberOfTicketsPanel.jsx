@@ -1,10 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './numberOfTicketsPanel.css';
 
 export default function NumberOfTicketsPanel(props) {
-  const { handleChange, numberOfDisplayed } = props;
+  const { handleChange, numberOfDisplayed, totalTickets } = props;
   return (
     <div className="number-panel-wrapper">
+      <h1 className="title">
+        Всего получено и обработано билетов:
+        <span className="number-panel-text">{totalTickets}</span>
+      </h1>
+
       <h1 className="title">Количество билетов для показа: </h1>
 
       <div className="number-panel__inputs-block">
@@ -67,3 +73,9 @@ export default function NumberOfTicketsPanel(props) {
     </div>
   );
 }
+
+NumberOfTicketsPanel.propTypes = {
+  handleChange: PropTypes.func,
+  numberOfDisplayed: PropTypes.number,
+  totalTickets: PropTypes.number,
+};

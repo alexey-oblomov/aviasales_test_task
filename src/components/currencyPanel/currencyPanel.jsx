@@ -1,41 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './currencyPanel.css';
-
+import { viewDate } from '../../utils/utils';
 export default function CurrencyPanel(props) {
-  const { currencyExchange, currencyDisplayed, handleChangeCurrency } = props;
-  const { date, usd, eur } = currencyExchange;
+  const { currencyData, currencyDisplayed, handleChangeCurrency } = props;
+  const { date, usd, eur } = currencyData;
 
-  function viewDate(date) {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const arr = [
-      'Январь',
-      'Февраль',
-      'Март',
-      'Апрель',
-      'Май',
-      'Июнь',
-      'Июль',
-      'Август',
-      'Сентябрь',
-      'Ноябрь',
-      'Декабрь',
-    ];
-    const result = hours + ':' + minutes + ' ' + day + ' ' + arr[month] + ' ' + year;
-    return result;
-  }
+  const displayDate = viewDate(new Date(date));
+  const roundUsd = Number(usd).toFixed(2);
+  const roundEur = Number(eur).toFixed(2);
 
-  const date1 = new Date(date);
-  const displayDate = viewDate(date1);
   return (
     <div className="currencyPanel-wrapper">
-      <span className="currencyPanel-heading">Курс ЦБ по состоянию на: {displayDate}</span>
-      <span className="currencyPanel-text">USD: {usd}</span>
-      <span className="currencyPanel-text">EUR: {eur}</span>
-      <span className="currencyPanel-heading">Показать стоимость в другой валюте:</span>
+      <div className="currencyPanel-heading">
+        Курс ЦБ по состоянию на:
+        <br /> {displayDate}
+      </div>
+      <div className="currencyPanel-text">USD: {roundUsd}</div>
+      <div className="currencyPanel-text">EUR: {roundEur}</div>
+      <div className="currencyPanel-heading">Показать стоимость в другой валюте:</div>
       <div className="currencyPanel__inputs-block">
         <div className="radiobox">
           <input
@@ -79,3 +62,9 @@ export default function CurrencyPanel(props) {
     </div>
   );
 }
+
+CurrencyPanel.propTypes = {
+  currencyData: PropTypes.object,
+  currencyDisplayed: PropTypes.string,
+  handleChangeCurrency: PropTypes.func,
+};
