@@ -3,13 +3,17 @@ import { getSearchIdUrl as baseUrlSearchId } from './paths.js';
 import { getTicketsUrl as baseUrlForTickets } from './paths.js';
 import { cbCurrencyUrl } from './paths.js';
 
-export const getSearchId = () =>
-  axios
+export const getSearchId = () => {
+  const id = axios
     .get(baseUrlSearchId)
     .then((response) => {
       return response.data.searchId;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+    });
+  return id;
+};
 
 export const getOnePackTickets = (id) => {
   const getTicketsUrl = baseUrlForTickets + id;
@@ -19,8 +23,9 @@ export const getOnePackTickets = (id) => {
       return response.data;
     })
     .catch((error) => {
-      return;
+      getOnePackTickets(id);
     });
+
   return response;
 };
 
@@ -52,20 +57,11 @@ export function sortByDuration(array) {
   return result;
 }
 
-export function toggleClassBtnActive(event) {
-  if (!event.currentTarget.classList.contains('btn-active')) {
-    const btns = document.querySelectorAll('button');
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].classList.toggle('btn-active');
-    }
-  }
-}
-
 export function getCurrencyFromCB() {
   return axios.get(cbCurrencyUrl);
 }
 
-export const displayCurremcySymbol = (currency) => {
+export const displayCurrencySymbol = (currency) => {
   const StopNumber = {
     RUB: 'Р',
     USD: '$',

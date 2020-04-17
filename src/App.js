@@ -1,12 +1,13 @@
 import React from 'react';
 import './app.css';
 import Header from './components/header/header';
-import FilterStops from './components/filterStops/flterStops';
+import FilterStops from './components/filterStops/flterStopsPanel';
 import NumberOfTicketsPanel from './components/numberOfTicketsPanel/numberOfTicketsPanel';
 import SortingPanel from './components/sortingPanel/sortingPanel';
 import ListTickets from './components/listTickets/listTickets';
 import NoTickets from './components/listTickets/noTickets';
 import CurrencyPanel from './components/currencyPanel/currencyPanel';
+import NoCurrencyPanel from './components/currencyPanel/noCurrencyPanel';
 import {
   getSearchId,
   getOnePackTickets,
@@ -30,6 +31,7 @@ class App extends React.Component {
     sortBy: 'cost',
     currencyData: {},
     currencyDisplayed: 'RUB',
+    numberOfFailure: 0,
   };
 
   componentDidMount() {
@@ -44,20 +46,53 @@ class App extends React.Component {
   };
 
   getAllTickets = (id) => {
-    getOnePackTickets(id).then((response) => {
-      if (!response) {
-        this.getAllTickets(id);
+    let { numberOfFailure } = this.state;
+    if (!id) {
+      if (numberOfFailure === 5) {
+        return;
       } else {
-        const { stop, tickets } = response;
-        if (stop === false) {
-          this.proccesingCurrenthPack(tickets);
-          this.moveItemsToDisplayTickets();
-          this.getAllTickets(id);
-        } else if (stop === true) {
-          this.proccesingCurrenthPack(tickets);
-        }
+        numberOfFailure += 1;
+        this.setState(
+          {
+            numberOfFailure,
+          },
+          () => {
+            console.log('Попытка получить id номер', numberOfFailure, 'Cервер не отвечает');
+            this.getAllTickets(id);
+          }
+        );
       }
-    });
+      return;
+    } else {
+      if (numberOfFailure <= 10) {
+        getOnePackTickets(id).then((response) => {
+          if (!response) {
+            numberOfFailure += 1;
+            this.setState(
+              {
+                numberOfFailure,
+              },
+              () => {
+                console.log('Попытка номер ', numberOfFailure);
+                this.getAllTickets(id);
+              }
+            );
+          } else {
+            const { stop, tickets } = response;
+            if (stop === false) {
+              this.proccesingCurrenthPack(tickets);
+              this.moveItemsToDisplayTickets();
+              this.getAllTickets(id);
+            } else if (stop === true) {
+              this.proccesingCurrenthPack(tickets);
+            }
+          }
+        });
+      } else {
+        console.log('Превышено количество попыток получения билетов');
+        return;
+      }
+    }
   };
 
   proccesingCurrenthPack = (newPackTickets) => {
@@ -256,6 +291,16 @@ class App extends React.Component {
       <NoTickets />
     );
 
+    const currencyPanel = currencyData.date ? (
+      <CurrencyPanel
+        currencyData={currencyData}
+        currencyDisplayed={currencyDisplayed}
+        handleChangeCurrency={this.handleChangeCurrency}
+      />
+    ) : (
+      <NoCurrencyPanel />
+    );
+
     return (
       <div className="app">
         <div className="header">
@@ -269,11 +314,7 @@ class App extends React.Component {
               numberOfDisplayed={numberOfDisplayed}
               totalTickets={totalTickets}
             />
-            <CurrencyPanel
-              currencyData={currencyData}
-              currencyDisplayed={currencyDisplayed}
-              handleChangeCurrency={this.handleChangeCurrency}
-            />
+            {currencyPanel}
           </div>
           <div className="right-aside">
             <SortingPanel sortBy={sortBy} handleChange={this.handleChangeSort} />

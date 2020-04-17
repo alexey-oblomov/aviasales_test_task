@@ -4,7 +4,7 @@ import {
   getStopsNumber,
   displayPrice,
   displayTime,
-  displayCurremcySymbol,
+  displayCurrencySymbol,
 } from '../../utils/utils';
 import './ticket.css';
 
@@ -38,7 +38,7 @@ export default function Ticket(props) {
   const viewTimeForward = displayTime(durationForward);
   const viewTimeBack = displayTime(durationBack);
   const viewPrice = displayPrice(price);
-  const viewCurrency = displayCurremcySymbol(currencyDisplayed);
+  const viewCurrency = displayCurrencySymbol(currencyDisplayed);
   const viewStopsForward = getStopsNumber(stopsForward.length);
   const viewStopsBack = getStopsNumber(stopsBack.length);
 

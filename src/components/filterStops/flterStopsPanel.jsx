@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './filterStops.css';
+import './filterStopsPanel.scss';
 
 export default function FilterStops(props) {
   const { handleChangeFilterStops, stopsData } = props;
   return (
-    <form className="form-checkbox">
-      <div className="inputs-block">
-        <div className="checkbox-heading">Количество пересадок</div>
+    <div className="filter-stops-panel__wrapper">
+      <div className="filter-stops-panel__heading">Количество пересадок</div>
+      <div className="filter-stops-panel__inputs-block">
 
-        <div className="checkbox">
+        <div className="checkbox__container">
           <label className="checkbox__label">
             <input
               className="checkbox__input"
@@ -23,7 +23,7 @@ export default function FilterStops(props) {
           </label>
         </div>
 
-        <div className="checkbox">
+        <div className="checkbox__container">
           <label className="checkbox__label">
             <input
               className="checkbox__input"
@@ -37,7 +37,7 @@ export default function FilterStops(props) {
           </label>
         </div>
 
-        <div className="checkbox">
+        <div className="checkbox__container">
           <label className="checkbox__label">
             <input
               className="checkbox__input"
@@ -50,7 +50,7 @@ export default function FilterStops(props) {
           </label>
         </div>
 
-        <div className="checkbox">
+        <div className="checkbox__container">
           <label className="checkbox__label">
             <input
               className="checkbox__input"
@@ -63,7 +63,7 @@ export default function FilterStops(props) {
           </label>
         </div>
 
-        <div className="checkbox">
+        <div className="checkbox__container">
           <label className="checkbox__label">
             <input
               className="checkbox__input"
@@ -76,7 +76,7 @@ export default function FilterStops(props) {
           </label>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
 

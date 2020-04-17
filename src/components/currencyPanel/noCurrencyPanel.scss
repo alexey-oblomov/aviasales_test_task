@@ -1,0 +1,83 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+
+.currency-panel__ {
+  &wrapper {
+    @include panel-base-styles;
+    box-shadow: $panel-box-shadow;
+    border-radius: 5px;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  &heading {
+    @include panel-base-styles;
+    margin: 0 0 5px;
+    text-transform: $text-uppercase;
+    margin-bottom: 5px;
+  }
+
+  &text {
+    @include panel-base-styles;
+    margin: 0 0 5px;
+    margin-bottom: 5px;
+  }
+
+  &inputs-block {
+    display: flex;
+    margin-top: 15px;
+  }
+}
+
+.noData {
+  color: $text-attention-color;
+  text-transform: $text-uppercase;
+}
+
+.radiobox {
+  &__container {
+    flex: 1 1 auto;
+    display: flex;
+  }
+
+  &__container:hover,
+  & .radiobox__label:hover {
+    cursor: pointer;
+  }
+
+  &__input {
+    @include radio-button--hidden;
+  }
+
+  &__label {
+    @include radio-button__label;
+  }
+
+  &__container input:checked + .radiobox__label {
+    @include radio-button--checked;
+  }
+
+  &__container input:disabled + .radiobox__label {
+    background: $btn--disabled-bg-color;
+  }
+
+  &__container input:disabled:checked + .radiobox__label {
+    @include radio-button--checked--disabled;
+  }
+}
+
+.first-child {
+  border-radius: $first-child-border-radius;
+}
+
+.last-child {
+  border-radius: $last-child-border-radius;
+}

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './sortingPanel.css';
+import './sortingPanel.scss';
 
 export default function SortingPanel(props) {
   const { handleChange, sortBy } = props;
 
   return (
     <div className="sorting-panel__inputs-block">
-      <div className="radiobox">
+      <div className="radiobox__container">
         <input
           type="radio"
           name="sortByCost"
@@ -17,11 +17,11 @@ export default function SortingPanel(props) {
           checked={sortBy === 'cost'}
         />
         <label htmlFor="cost" className="radiobox__label first-child">
-          <span>Самый дешевый</span>
+          Самый дешевый
         </label>
       </div>
 
-      <div className="radiobox">
+      <div className="radiobox__container">
         <input
           type="radio"
           name="sortByDuration"

@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './numberOfTicketsPanel.css';
+import './numberOfTicketsPanel.scss';
 
 export default function NumberOfTicketsPanel(props) {
   const { handleChange, numberOfDisplayed, totalTickets } = props;
   return (
-    <div className="number-panel-wrapper">
-      <h1 className="title">
-        Всего получено и обработано билетов:
-        <span className="number-panel-text">{totalTickets}</span>
-      </h1>
+    <div className="number-panel__wrapper">
+      <h1 className="number-panel__heading">Всего получено и обработано билетов:</h1>
+      <span className="number-panel__text">{totalTickets}</span>
 
-      <h1 className="title">Количество билетов для показа: </h1>
+      <h1 className="number-panel__heading">Количество билетов для показа: </h1>
 
       <div className="number-panel__inputs-block">
-        <div className="radiobox">
+        <div className="radiobox__container">
           <input
             type="radio"
             name="numberOfTickets"
@@ -28,7 +26,7 @@ export default function NumberOfTicketsPanel(props) {
           </label>
         </div>
 
-        <div className="radiobox">
+        <div className="radiobox__container">
           <input
             type="radio"
             name="numberOfTickets"
@@ -42,7 +40,7 @@ export default function NumberOfTicketsPanel(props) {
           </label>
         </div>
 
-        <div className="radiobox">
+        <div className="radiobox__container">
           <input
             type="radio"
             name="numberOfTickets"
@@ -56,7 +54,7 @@ export default function NumberOfTicketsPanel(props) {
           </label>
         </div>
 
-        <div className="radiobox">
+        <div className="radiobox__container">
           <input
             type="radio"
             name="numberOfTickets"

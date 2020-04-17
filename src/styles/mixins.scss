@@ -1,0 +1,78 @@
+@mixin panel-base-styles {
+  font-family: Open Sans;
+  font-style: normal;
+  color: $text-color;
+  background: $panel-bg-color;
+  font-size: $text-size;
+  line-height: $line-height;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+@mixin checkbox__label {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: $text-weight;
+  font-size: 13px;
+  line-height: $line-height;
+  display: block;
+  text-align: left;
+  padding-left: 50px;
+  width: 100%;
+  display: flex;
+}
+
+@mixin checkbox_box {
+  position: absolute;
+  margin-left: -30px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #9abbce;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@mixin radio-button--hidden {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@mixin checkbox__input--hidden {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@mixin radio-button__label {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: $text-uppercase;
+  border: $btn-border;
+  color: $btn-text-color;
+  background-color: $panel-bg-color;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin radio-button--checked {
+  color: $btn--checked-text-color;
+  background: $btn-bg-color;
+  border: $btn-border;
+}
+
+@mixin radio-button--checked--disabled {
+  color: $btn--disabled--checked-text-color;
+  background: $btn--disabled--checked-bg-color;
+  border-color: $btn--disabled--checked-border-color;
+}

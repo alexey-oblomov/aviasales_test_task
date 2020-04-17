@@ -1,0 +1,50 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.sorting-panel__ {
+  &inputs-block {
+    display: flex;
+    width: $sort-panel-wrapper-width;
+    height: $sort-panel-wrapper-height;
+  }
+}
+
+.radiobox {
+  &__container {
+    flex: 1 1 auto;
+    display: flex;
+  }
+
+  &__container:hover,
+  &__label:hover {
+    cursor: pointer;
+  }
+
+  &__input {
+    @include radio-button--hidden;
+  }
+
+  &__label {
+    @include radio-button__label;
+  }
+
+  &__container input:checked + .radiobox__label {
+    @include radio-button--checked;
+  }
+
+  &__container input:disabled + .radiobox__label {
+    background: $btn--disabled-bg-color;
+  }
+
+  &__container input:disabled:checked + .radiobox__label {
+    @include radio-button--checked--disabled;
+  }
+}
+
+.first-child {
+  border-radius: $first-child-border-radius;
+}
+
+.last-child {
+  border-radius: $last-child-border-radius;
+}

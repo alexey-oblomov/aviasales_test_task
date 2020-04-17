@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './currencyPanel.css';
+import './currencyPanel.scss';
 import { viewDate } from '../../utils/utils';
 export default function CurrencyPanel(props) {
   const { currencyData, currencyDisplayed, handleChangeCurrency } = props;
@@ -11,16 +11,16 @@ export default function CurrencyPanel(props) {
   const roundEur = Number(eur).toFixed(2);
 
   return (
-    <div className="currencyPanel-wrapper">
-      <div className="currencyPanel-heading">
+    <div className="currency-panel__wrapper">
+      <div className="currency-panel__heading">
         Курс ЦБ по состоянию на:
         <br /> {displayDate}
       </div>
-      <div className="currencyPanel-text">USD: {roundUsd}</div>
-      <div className="currencyPanel-text">EUR: {roundEur}</div>
-      <div className="currencyPanel-heading">Показать стоимость в другой валюте:</div>
-      <div className="currencyPanel__inputs-block">
-        <div className="radiobox">
+      <div className="currency-panel__text">USD: {roundUsd}</div>
+      <div className="currency-panel__text">EUR: {roundEur}</div>
+      <div className="currency-panel__heading">Показать стоимость в другой валюте:</div>
+      <div className="currency-panel__inputs-block">
+        <div className="radiobox__container">
           <input
             type="radio"
             id="RUB"
@@ -33,7 +33,7 @@ export default function CurrencyPanel(props) {
           </label>
         </div>
 
-        <div className="radiobox">
+        <div className="radiobox__container">
           <input
             type="radio"
             id="USD"
@@ -46,7 +46,7 @@ export default function CurrencyPanel(props) {
           </label>
         </div>
 
-        <div className="radiobox">
+        <div className="radiobox__container">
           <input
             type="radio"
             id="EUR"
