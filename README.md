@@ -3,6 +3,7 @@
 Демонстрация:
 https://alexey-oblomov.github.io/aviasales_test_task/
 
+[Image alt](https://github.com/alexey-oblomov/aviasales_test_task/screenshot.png)
 <h2>Описание задачи.</h2>
 
 Основной frontend проект <a href="https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend">нашей команды</a> — это страница выдачи билетов со множеством фильтров,настроек и, собственно, билетов. Проект написан на React, поэтому тестовое задание приближено к ежедневным задачам.
