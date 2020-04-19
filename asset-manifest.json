@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/aviasales_test_task/static/css/main.a6f536d4.chunk.css",
-    "main.js": "/aviasales_test_task/static/js/main.e71ec977.chunk.js",
-    "main.js.map": "/aviasales_test_task/static/js/main.e71ec977.chunk.js.map",
+    "main.css": "/aviasales_test_task/static/css/main.86d67d60.chunk.css",
+    "main.js": "/aviasales_test_task/static/js/main.97c3e9e3.chunk.js",
+    "main.js.map": "/aviasales_test_task/static/js/main.97c3e9e3.chunk.js.map",
     "runtime-main.js": "/aviasales_test_task/static/js/runtime-main.a9ce23cc.js",
     "runtime-main.js.map": "/aviasales_test_task/static/js/runtime-main.a9ce23cc.js.map",
-    "static/js/2.66a406fa.chunk.js": "/aviasales_test_task/static/js/2.66a406fa.chunk.js",
-    "static/js/2.66a406fa.chunk.js.map": "/aviasales_test_task/static/js/2.66a406fa.chunk.js.map",
+    "static/js/2.847c170f.chunk.js": "/aviasales_test_task/static/js/2.847c170f.chunk.js",
+    "static/js/2.847c170f.chunk.js.map": "/aviasales_test_task/static/js/2.847c170f.chunk.js.map",
     "index.html": "/aviasales_test_task/index.html",
-    "precache-manifest.77dfa5f56d00fe683444c193e4966557.js": "/aviasales_test_task/precache-manifest.77dfa5f56d00fe683444c193e4966557.js",
+    "precache-manifest.bc35a78193b15b71e4a10f3aeaed3cfd.js": "/aviasales_test_task/precache-manifest.bc35a78193b15b71e4a10f3aeaed3cfd.js",
     "service-worker.js": "/aviasales_test_task/service-worker.js",
-    "static/css/main.a6f536d4.chunk.css.map": "/aviasales_test_task/static/css/main.a6f536d4.chunk.css.map",
-    "static/js/2.66a406fa.chunk.js.LICENSE.txt": "/aviasales_test_task/static/js/2.66a406fa.chunk.js.LICENSE.txt",
-    "static/media/header.css": "/aviasales_test_task/static/media/Logo.d2a4807b.png"
+    "static/css/main.86d67d60.chunk.css.map": "/aviasales_test_task/static/css/main.86d67d60.chunk.css.map",
+    "static/js/2.847c170f.chunk.js.LICENSE.txt": "/aviasales_test_task/static/js/2.847c170f.chunk.js.LICENSE.txt",
+    "static/media/Logo.png": "/aviasales_test_task/static/media/Logo.d2a4807b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.a9ce23cc.js",
-    "static/js/2.66a406fa.chunk.js",
-    "static/css/main.a6f536d4.chunk.css",
-    "static/js/main.e71ec977.chunk.js"
+    "static/js/2.847c170f.chunk.js",
+    "static/css/main.86d67d60.chunk.css",
+    "static/js/main.97c3e9e3.chunk.js"
   ]
 }
