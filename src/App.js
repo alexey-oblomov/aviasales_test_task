@@ -167,6 +167,7 @@ class App extends React.Component {
   };
 
   handleChangeFilterStops = (event) => {
+    console.log('Клик!');
     const theStop = event.currentTarget.id;
     const { stops } = this.state;
     const { all, noStops, oneStop, twoStops, threeStops } = stops;
