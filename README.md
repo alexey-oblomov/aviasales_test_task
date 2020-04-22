@@ -14,12 +14,23 @@ https://alexey-oblomov.github.io/aviasales_test_task/
 Условия:
 
 <ul>
-<li>Используй React</li>
-<li>Используй TS или JS</li>
-<li>Работоспособность в актуальной версии Google Chrome</li>
-<li>Остальное на твоё усмотрение</li>
+  <li>Используй React</li>
+  <li>Используй TS или JS</li>
+  <li>Работоспособность в актуальной версии Google Chrome</li>  
+  <li>Нужно отображать данные еще до того, как мы получили весь набор
+  <li>По фильтрам будет считать, что необходимо точное количество пересадок в одну сторону</li>
+  <li>Сортировка по времени - суммарное время полета в обе стороны</li>
+  <li>Остальное на твоё усмотрение</li>
 </ul>
 
 Документация по работе с сервером: <a href="https://github.com/KosyanMedia/test-tasks/blob/master/aviasales_frontend/server.md">Здесь</a>
 
 Макет: <a href="https://www.figma.com/file/4fQe1lEbo4DARjvNtaU0uJ/Aviasales-test-task">Здесь</a>
+
+Используемые инструменты:
+<ul>
+  <li>Axios - для сетевых запросов</li>
+  <li>Styled Components - используем вместо внешних css стилей</li>
+</ul>
+    
+    
