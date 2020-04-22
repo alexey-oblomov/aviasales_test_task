@@ -21,5 +21,5 @@ const Div = styled.div`
   padding: 20px;
 `;
 export default function NoTickets() {
-  return <Div>Билетов не найдено</Div>;
+  return <Div>Билеты не найдены</Div>;
 }
