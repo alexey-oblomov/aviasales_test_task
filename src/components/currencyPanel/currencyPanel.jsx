@@ -1,7 +1,92 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { viewDate } from '../../utils/utils';
+// import { viewDate } from '../../utils/utils';
 import styled from 'styled-components';
+
+
+function viewDate(date) {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const arr = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Ноябрь',
+    'Декабрь',
+  ];
+  return day + ' ' + arr[month] + ' ' + year;
+}
+
+export default function CurrencyPanel(props) {
+  const { currencyData, currencyDisplayed, handleChangeCurrency } = props;
+  const { date, usd, eur } = currencyData;
+
+  const displayDate = viewDate(new Date(date));
+  const roundUsd = Number(usd).toFixed(2);
+  const roundEur = Number(eur).toFixed(2);
+
+  return (
+    <WrapperDiv>
+      <HeadingDiv>
+        Курс ЦБ по состоянию на:
+        <br /> {displayDate}
+      </HeadingDiv>
+      <TextDiv>USD: {roundUsd}</TextDiv>
+      <TextDiv>EUR: {roundEur}</TextDiv>
+      <HeadingDiv>Показать стоимость в другой валюте:</HeadingDiv>
+      <InputsBlockDiv>
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            id="RUB"
+            onChange={handleChangeCurrency}
+            checked={currencyDisplayed === 'RUB'}
+          />
+          <RadioButtonFirstChild checked={currencyDisplayed === 'RUB'} htmlFor="RUB">
+            RUB
+          </RadioButtonFirstChild>
+        </RadioBoxContainer>
+
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            id="USD"
+            onChange={handleChangeCurrency}
+            checked={currencyDisplayed === 'USD'}
+          />
+          <RadioButtonLabel checked={currencyDisplayed === 'USD'} htmlFor="USD">
+            USD
+          </RadioButtonLabel>
+        </RadioBoxContainer>
+
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            id="EUR"
+            onChange={handleChangeCurrency}
+            checked={currencyDisplayed === 'EUR'}
+          />
+          <RadioButtonLastChild checked={currencyDisplayed === 'EUR'} htmlFor="EUR">
+            EUR
+          </RadioButtonLastChild>
+        </RadioBoxContainer>
+      </InputsBlockDiv>
+    </WrapperDiv>
+  );
+}
+
+CurrencyPanel.propTypes = {
+  currencyData: PropTypes.object,
+  currencyDisplayed: PropTypes.string,
+  handleChangeCurrency: PropTypes.func,
+};
 
 const Div = styled.div`
   font-family: Open Sans;
@@ -86,66 +171,3 @@ const RadioButtonFirstChild = styled(RadioButtonLabel)`
 const RadioButtonLastChild = styled(RadioButtonLabel)`
   border-radius: 0 5px 5px 0;
 `;
-export default function CurrencyPanel(props) {
-  const { currencyData, currencyDisplayed, handleChangeCurrency } = props;
-  const { date, usd, eur } = currencyData;
-
-  const displayDate = viewDate(new Date(date));
-  const roundUsd = Number(usd).toFixed(2);
-  const roundEur = Number(eur).toFixed(2);
-
-  return (
-    <WrapperDiv>
-      <HeadingDiv>
-        Курс ЦБ по состоянию на:
-        <br /> {displayDate}
-      </HeadingDiv>
-      <TextDiv>USD: {roundUsd}</TextDiv>
-      <TextDiv>EUR: {roundEur}</TextDiv>
-      <HeadingDiv>Показать стоимость в другой валюте:</HeadingDiv>
-      <InputsBlockDiv>
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            id="RUB"
-            onChange={handleChangeCurrency}
-            checked={currencyDisplayed === 'RUB'}
-          />
-          <RadioButtonFirstChild checked={currencyDisplayed === 'RUB'} htmlFor="RUB">
-            RUB
-          </RadioButtonFirstChild>
-        </RadioBoxContainer>
-
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            id="USD"
-            onChange={handleChangeCurrency}
-            checked={currencyDisplayed === 'USD'}
-          />
-          <RadioButtonLabel checked={currencyDisplayed === 'USD'} htmlFor="USD">
-            USD
-          </RadioButtonLabel>
-        </RadioBoxContainer>
-
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            id="EUR"
-            onChange={handleChangeCurrency}
-            checked={currencyDisplayed === 'EUR'}
-          />
-          <RadioButtonLastChild checked={currencyDisplayed === 'EUR'} htmlFor="EUR">
-            EUR
-          </RadioButtonLastChild>
-        </RadioBoxContainer>
-      </InputsBlockDiv>
-    </WrapperDiv>
-  );
-}
-
-CurrencyPanel.propTypes = {
-  currencyData: PropTypes.object,
-  currencyDisplayed: PropTypes.string,
-  handleChangeCurrency: PropTypes.func,
-};

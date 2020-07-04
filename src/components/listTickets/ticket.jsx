@@ -1,11 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  getStopsNumber,
-  displayPrice,
-  displayTime,
-  displayCurrencySymbol,
-} from '../../utils/utils';
 import './ticket.css';
 
 export default function Ticket(props) {
@@ -33,6 +27,53 @@ export default function Ticket(props) {
     price = Math.round(price / usd);
   } else if (currencyDisplayed === 'EUR') {
     price = Math.round(price / eur);
+  }
+
+  function displayCurrencySymbol(currency) {
+    const StopNumber = {
+      RUB: 'Р',
+      USD: '$',
+      EUR: '€',
+    };
+    for (let key in StopNumber) {
+      if (key === currency) {
+        return StopNumber[key];
+      }
+    }
+  }
+
+  function displayPrice(price) {
+    let string = price.toString();
+    const length = string.length;
+    if (length > 3) {
+      string.split('');
+      const idx = length - 1 - 3;
+      const firstItems = string.slice(price[0], idx + 1);
+      const lastItems = string.slice(idx + 1, length + 1);
+      string = firstItems + ' ' + lastItems;
+      return string;
+    }
+    return string;
+  }
+
+  function getStopsNumber(stops) {
+    const StopNumber = {
+      1: '1 пересадка',
+      2: '2 пересадки',
+      3: '3 пересадки',
+      0: 'без пересадок',
+    };
+    for (let key in StopNumber) {
+      if (Number(key) === stops) {
+        return StopNumber[key];
+      }
+    }
+  }
+
+  function displayTime(time) {
+    const hour = Math.floor(time / 60);
+    const minutes = time % 60;
+    return `${hour}ч ${minutes}м `;
   }
 
   const viewTimeForward = displayTime(durationForward);

@@ -1,25 +1,19 @@
 import React from 'react';
 import './app.css';
+
+import Grid from '@material-ui/core/Grid';
 import Header from './components/header/header';
 import FilterStops from './components/filterStops/flterStopsPanel';
 import NumberOfTicketsPanel from './components/numberOfTicketsPanel/numberOfTicketsPanel';
 import SortingPanel from './components/sortingPanel/sortingPanel';
 import ListTickets from './components/listTickets/listTickets';
-import NoTickets from './components/listTickets/noTickets';
 import CurrencyPanel from './components/currencyPanel/currencyPanel';
 import NoCurrencyPanel from './components/currencyPanel/noCurrencyPanel';
-import {
-  getSearchId,
-  getOnePackTickets,
-  sortByPrice,
-  sortByDuration,
-  getCurrencyFromCB,
-} from './utils/utils';
+import { getSearchId, getOnePackTickets, getCurrencyFromCB } from './utils/utils';
 
 class App extends React.Component {
   state = {
     tickets: [],
-    displayTickets: [],
     numberOfDisplayed: 5,
     stops: {
       all: true,
@@ -81,7 +75,6 @@ class App extends React.Component {
             const { stop, tickets } = response;
             if (stop === false) {
               this.proccesingCurrenthPack(tickets);
-              this.moveItemsToDisplayTickets();
               this.getAllTickets(id);
             } else if (stop === true) {
               this.proccesingCurrenthPack(tickets);
@@ -97,12 +90,9 @@ class App extends React.Component {
 
   proccesingCurrenthPack = (newPackTickets) => {
     const { tickets } = this.state;
-    this.setState(
-      {
-        tickets: [...tickets, ...newPackTickets],
-      },
-      () => this.updateTickets()
-    );
+    this.setState({
+      tickets: [...tickets, ...newPackTickets],
+    });
   };
 
   getCurrency = () => {
@@ -119,55 +109,26 @@ class App extends React.Component {
 
   handleChangeNumberOfDisplated = (event) => {
     const id = Number(event.currentTarget.id);
-    this.setState(
-      {
-        numberOfDisplayed: id,
-      },
-      () => {
-        this.updateTickets();
-      }
-    );
+    this.setState({
+      numberOfDisplayed: id,
+    });
   };
 
   handleChangeCurrency = (event) => {
     const id = event.currentTarget.id;
-    this.setState(
-      {
-        currencyDisplayed: id,
-      },
-      () => {
-        this.updateTickets();
-      }
-    );
+    this.setState({
+      currencyDisplayed: id,
+    });
   };
 
   handleChangeSort = (event) => {
     const id = event.currentTarget.id;
-    this.setState(
-      {
-        sortBy: id,
-      },
-      () => this.sortTickets()
-    );
-  };
-
-  sortTickets = () => {
-    const { tickets, sortBy } = this.state;
-    if (sortBy === 'cost') {
-      sortByPrice(tickets);
-    } else {
-      sortByDuration(tickets);
-    }
-    this.filterByStops();
-  };
-
-  updateTickets = () => {
-    this.sortTickets();
-    this.filterByStops();
+    this.setState({
+      sortBy: id,
+    });
   };
 
   handleChangeFilterStops = (event) => {
-    console.log('Клик!');
     const theStop = event.currentTarget.id;
     const { stops } = this.state;
     const { all, noStops, oneStop, twoStops, threeStops } = stops;
@@ -175,7 +136,6 @@ class App extends React.Component {
     const stopsStateChange = (theStop) => {
       if (theStop === 'all' && all === false) {
         return {
-          ...stops,
           all: true,
           noStops: true,
           oneStop: true,
@@ -183,13 +143,23 @@ class App extends React.Component {
           threeStops: true,
         };
       }
+
+      if (theStop === 'all' && all === true) {
+        return {
+          all: false,
+          noStops: false,
+          oneStop: false,
+          twoStops: false,
+          threeStops: false,
+        };
+      }
+
       const stopsStatus = {
         noStops: { ...stops, noStops: !noStops, all: false },
         oneStop: { ...stops, oneStop: !oneStop, all: false },
         twoStops: { ...stops, twoStops: !twoStops, all: false },
         threeStops: { ...stops, threeStops: !threeStops, all: false },
         all: {
-          ...stops,
           all: false,
           noStops: false,
           oneStop: false,
@@ -206,91 +176,43 @@ class App extends React.Component {
 
     let newStops = stopsStateChange(theStop);
 
-    if (
-      newStops.all === false &&
-      newStops.noStops === true &&
-      newStops.oneStop === true &&
-      newStops.twoStops === true &&
-      newStops.threeStops === true
-    ) {
-      newStops = {
-        ...stops,
-        all: true,
-        noStops: true,
-        oneStop: true,
-        twoStops: true,
-        threeStops: true,
-      };
-    }
-    this.setState({ stops: newStops }, () => this.updateTickets());
-  };
-
-  getArrayStopsFilter = () => {
-    let arrayForFilter = [];
-    const currentStopsState = this.state.stops;
-    for (let key in currentStopsState) {
-      if (currentStopsState[key] === true) {
-        arrayForFilter = [...arrayForFilter, key];
-      }
-    }
-    const stopsCount = {
-      noStops: 0,
-      oneStop: 1,
-      twoStops: 2,
-      threeStops: 3,
-    };
-    return arrayForFilter.map((item) => stopsCount[item]);
-  };
-
-  filterByStops = () => {
-    const { tickets } = this.state;
-    const checkArr = this.getArrayStopsFilter();
-    function contains(arr, elem) {
-      for (var i = 0; i < arr.length; i++) {
-        if (arr[i] === elem) {
-          return true;
-        }
-      }
-      return false;
-    }
-    const result = tickets.filter((item) => contains(checkArr, item['segments'][0].stops.length));
-    this.moveItemsToDisplayTickets(result);
-  };
-
-  moveItemsToDisplayTickets = (array = this.state.tickets) => {
-    const { numberOfDisplayed } = this.state;
-    let newValue = [];
-    for (let i = 0; i < numberOfDisplayed; i++) {
-      if (array[i]) {
-        newValue.push(array[i]);
-      }
-    }
-    this.setState({
-      displayTickets: newValue,
-    });
+    // if (
+    //   newStops.all === false &&
+    //   newStops.noStops === true &&
+    //   newStops.oneStop === true &&
+    //   newStops.twoStops === true &&
+    //   newStops.threeStops === true
+    // ) {
+    //   newStops = {
+    //     all: true,
+    //     noStops: true,
+    //     oneStop: true,
+    //     twoStops: true,
+    //     threeStops: true,
+    //   };
+    // }
+    this.setState({ stops: newStops });
   };
 
   render() {
     const {
       tickets,
-      displayTickets,
       stops,
       sortBy,
       numberOfDisplayed,
       currencyData,
       currencyDisplayed,
     } = this.state;
-    const totalTickets = tickets.length;
+    const numberOfTickets = tickets.length;
 
-    const listTickets = displayTickets.length ? (
-      <ListTickets
-        displayTickets={displayTickets}
-        currencyData={currencyData}
-        currencyDisplayed={currencyDisplayed}
-      />
-    ) : (
-      <NoTickets />
-    );
+    const listTicketsProps = {
+      tickets,
+      stops,
+      sortBy,
+      numberOfDisplayed,
+      currencyData,
+      currencyDisplayed,
+    };
 
     const currencyPanel = currencyData.date ? (
       <CurrencyPanel
@@ -304,24 +226,37 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <div className="header">
-          <Header />
-        </div>
-        <div className="main">
-          <div className="left-aside">
-            <FilterStops handleChangeFilterStops={this.handleChangeFilterStops} stopsData={stops} />
-            <NumberOfTicketsPanel
-              handleChange={this.handleChangeNumberOfDisplated}
-              numberOfDisplayed={numberOfDisplayed}
-              totalTickets={totalTickets}
-            />
-            {currencyPanel}
-          </div>
-          <div className="right-aside">
-            <SortingPanel sortBy={sortBy} handleChange={this.handleChangeSort} />
-            {listTickets}
-          </div>
-        </div>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={12}>
+            <div className="header">
+              <Header />
+            </div>
+          </Grid>
+
+          {/* <div className="main"> */}
+          <Grid item xs={12} sm={6} className="main">
+            <div className="left-aside">
+              <FilterStops
+                handleChangeFilterStops={this.handleChangeFilterStops}
+                stopsData={stops}
+              />
+              <NumberOfTicketsPanel
+                handleChange={this.handleChangeNumberOfDisplated}
+                numberOfDisplayed={numberOfDisplayed}
+                numberOfTickets={numberOfTickets}
+              />
+              {currencyPanel}
+            </div>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <div className="right-aside">
+              <SortingPanel sortBy={sortBy} handleChange={this.handleChangeSort} />
+              <ListTickets {...listTicketsProps} />
+            </div>
+          </Grid>
+        </Grid>
+        {/* </div> */}
       </div>
     );
   }

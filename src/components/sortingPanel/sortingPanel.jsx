@@ -2,6 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+export default function SortingPanel(props) {
+  const { handleChange, sortBy } = props;
+
+  return (
+    <InputsBlockDiv>
+      <RadioBoxContainer>
+        <RadioButtonInput
+          type="radio"
+          name="sortByCost"
+          id="cost"
+          onChange={handleChange}
+          checked={sortBy === 'cost'}
+        />
+        <RadioButtonFirstChild htmlFor="cost" checked={sortBy === 'cost'}>
+          Самый дешевый
+        </RadioButtonFirstChild>
+      </RadioBoxContainer>
+
+      <RadioBoxContainer>
+        <RadioButtonInput
+          type="radio"
+          name="sortByDuration"
+          id="duration"
+          onChange={handleChange}
+          checked={sortBy === 'duration'}
+        />
+        <RadioButtonLastChild htmlFor="duration" checked={sortBy === 'duration'}>
+          Самый быстрый
+        </RadioButtonLastChild>
+      </RadioBoxContainer>
+    </InputsBlockDiv>
+  );
+}
+
+SortingPanel.propTypes = {
+  handleChange: PropTypes.func,
+  sortBy: PropTypes.string,
+};
+
 const Div = styled.div`
   font-family: Open Sans;
   font-style: normal;
@@ -59,41 +98,3 @@ const RadioButtonFirstChild = styled(RadioButtonLabel)`
 const RadioButtonLastChild = styled(RadioButtonLabel)`
   border-radius: 0 5px 5px 0;
 `;
-export default function SortingPanel(props) {
-  const { handleChange, sortBy } = props;
-
-  return (
-    <InputsBlockDiv>
-      <RadioBoxContainer>
-        <RadioButtonInput
-          type="radio"
-          name="sortByCost"
-          id="cost"
-          onChange={handleChange}
-          checked={sortBy === 'cost'}
-        />
-        <RadioButtonFirstChild htmlFor="cost" checked={sortBy === 'cost'}>
-          Самый дешевый
-        </RadioButtonFirstChild>
-      </RadioBoxContainer>
-
-      <RadioBoxContainer>
-        <RadioButtonInput
-          type="radio"
-          name="sortByDuration"
-          id="duration"
-          onChange={handleChange}
-          checked={sortBy === 'duration'}
-        />
-        <RadioButtonLastChild htmlFor="duration" checked={sortBy === 'duration'}>
-          Самый быстрый
-        </RadioButtonLastChild>
-      </RadioBoxContainer>
-    </InputsBlockDiv>
-  );
-}
-
-SortingPanel.propTypes = {
-  handleChange: PropTypes.func,
-  sortBy: PropTypes.string,
-};

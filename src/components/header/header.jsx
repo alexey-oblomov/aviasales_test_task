@@ -2,6 +2,17 @@ import React from 'react';
 import img from './logo/Logo.png';
 import styled from 'styled-components';
 
+export default function Header() {
+  return (
+    <WrapperDiv>
+      <Link href="https://github.com/alexey-oblomov/aviasales_test_task" alt="Ссылка на GutHub">
+        GitHub: https://github.com/alexey-oblomov/aviasales_test_task
+      </Link>
+      <LogoDiv />
+    </WrapperDiv>
+  );
+}
+
 const WrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,13 +44,3 @@ const Link = styled.a`
     text-decoration: underline #000000;
   }
 `;
-export default function Header() {
-  return (
-    <WrapperDiv>
-      <Link href="https://github.com/alexey-oblomov/aviasales_test_task" alt="Ссылка на GutHub">
-        GitHub: https://github.com/alexey-oblomov/aviasales_test_task
-      </Link>
-      <LogoDiv />
-    </WrapperDiv>
-  );
-}

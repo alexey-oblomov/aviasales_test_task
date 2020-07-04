@@ -3,7 +3,7 @@
 Демонстрация:
 https://alexey-oblomov.github.io/aviasales_test_task/
 
-![alt text](/screenshot.png)
+[<img src="/screenshot.png">](https://alexey-oblomov.github.io/aviasales_test_task/)
 
 <h2>Описание задачи.</h2>
 
@@ -16,7 +16,7 @@ https://alexey-oblomov.github.io/aviasales_test_task/
 <ul>
   <li>Используй React</li>
   <li>Используй TS или JS</li>
-  <li>Работоспособность в актуальной версии Google Chrome</li>  
+  <li>Работоспособность в актуальной версии Google Chrome</li>
   <li>Нужно отображать данные еще до того, как мы получили весь набор
   <li>По фильтрам будет считать, что необходимо точное количество пересадок в одну сторону</li>
   <li>Сортировка по времени - суммарное время полета в обе стороны</li>
@@ -28,9 +28,8 @@ https://alexey-oblomov.github.io/aviasales_test_task/
 Макет: <a href="https://www.figma.com/file/4fQe1lEbo4DARjvNtaU0uJ/Aviasales-test-task">Здесь</a>
 
 Используемые инструменты:
+
 <ul>
   <li>Axios - для сетевых запросов</li>
   <li>Styled Components - используем вместо внешних css стилей</li>
 </ul>
-    
-    

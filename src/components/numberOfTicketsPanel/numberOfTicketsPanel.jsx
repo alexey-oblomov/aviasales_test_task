@@ -2,6 +2,77 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+export default function NumberOfTicketsPanel(props) {
+  const { handleChange, numberOfDisplayed, numberOfTickets } = props;
+  return (
+    <WrapperDiv>
+      <HeadingDiv>Всего получено и обработано билетов:</HeadingDiv>
+      <TextDiv>{numberOfTickets}</TextDiv>
+
+      <HeadingDiv>Количество билетов для показа: </HeadingDiv>
+
+      <InputsBlockDiv>
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            name="numberOfTickets"
+            id="5"
+            onChange={handleChange}
+            checked={numberOfDisplayed === 5}
+          />
+          <RadioButtonFirstChild htmlFor="5" checked={numberOfDisplayed === 5}>
+            5
+          </RadioButtonFirstChild>
+        </RadioBoxContainer>
+
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            name="numberOfTickets"
+            id="10"
+            onChange={handleChange}
+            checked={numberOfDisplayed === 10}
+          />
+          <RadioButtonLabel htmlFor="10" checked={numberOfDisplayed === 10}>
+            10
+          </RadioButtonLabel>
+        </RadioBoxContainer>
+
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            name="numberOfTickets"
+            id="15"
+            onChange={handleChange}
+            checked={numberOfDisplayed === 15}
+          />
+          <RadioButtonLabel htmlFor="15" checked={numberOfDisplayed === 15}>
+            15
+          </RadioButtonLabel>
+        </RadioBoxContainer>
+
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            name="numberOfTickets"
+            id="50"
+            onChange={handleChange}
+            checked={numberOfDisplayed === 50}
+          />
+          <RadioButtonLastChild htmlFor="50" checked={numberOfDisplayed === 50}>
+            50
+          </RadioButtonLastChild>
+        </RadioBoxContainer>
+      </InputsBlockDiv>
+    </WrapperDiv>
+  );
+}
+
+NumberOfTicketsPanel.propTypes = {
+  handleChange: PropTypes.func,
+  numberOfDisplayed: PropTypes.number,
+  numberOfTickets: PropTypes.number,
+};
 const Div = styled.div`
   font-family: Open Sans;
   font-style: normal;
@@ -85,74 +156,3 @@ const RadioButtonFirstChild = styled(RadioButtonLabel)`
 const RadioButtonLastChild = styled(RadioButtonLabel)`
   border-radius: 0 5px 5px 0;
 `;
-export default function NumberOfTicketsPanel(props) {
-  const { handleChange, numberOfDisplayed, totalTickets } = props;
-  return (
-    <WrapperDiv>
-      <HeadingDiv>Всего получено и обработано билетов:</HeadingDiv>
-      <TextDiv>{totalTickets}</TextDiv>
-
-      <HeadingDiv>Количество билетов для показа: </HeadingDiv>
-
-      <InputsBlockDiv>
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            name="numberOfTickets"
-            id="5"
-            onChange={handleChange}
-            checked={numberOfDisplayed === 5}
-          />
-          <RadioButtonFirstChild htmlFor="5" checked={numberOfDisplayed === 5}>
-            5
-          </RadioButtonFirstChild>
-        </RadioBoxContainer>
-
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            name="numberOfTickets"
-            id="10"
-            onChange={handleChange}
-            checked={numberOfDisplayed === 10}
-          />
-          <RadioButtonLabel htmlFor="10" checked={numberOfDisplayed === 10}>
-            10
-          </RadioButtonLabel>
-        </RadioBoxContainer>
-
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            name="numberOfTickets"
-            id="15"
-            onChange={handleChange}
-            checked={numberOfDisplayed === 15}
-          />
-          <RadioButtonLabel htmlFor="15" checked={numberOfDisplayed === 15}>
-            15
-          </RadioButtonLabel>
-        </RadioBoxContainer>
-
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            name="numberOfTickets"
-            id="50"
-            onChange={handleChange}
-            checked={numberOfDisplayed === 50}
-          />
-          <RadioButtonLastChild htmlFor="50" checked={numberOfDisplayed === 50}>
-            50
-          </RadioButtonLastChild>
-        </RadioBoxContainer>
-      </InputsBlockDiv>
-    </WrapperDiv>
-  );
-}
-
-NumberOfTicketsPanel.propTypes = {
-  handleChange: PropTypes.func,
-  numberOfDisplayed: PropTypes.number,
-  totalTickets: PropTypes.number,
-};

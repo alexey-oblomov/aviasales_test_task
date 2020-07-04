@@ -1,6 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export default function NoCurrencyPanel() {
+  return (
+    <WrapperDiv>
+      <HeadingDiv>
+        Текущий курс ЦБ :
+        <br /> <NoDataTextDiv className="noData">НЕТ ДАННЫХ</NoDataTextDiv>
+      </HeadingDiv>
+      <HeadingDiv>Показать стоимость в другой валюте:</HeadingDiv>
+      <InputsBlockDiv>
+        <RadioButtonFirstChild>
+          <RadioButtonInput type="radio" id="RUB" className="radiobox__input" checked disabled />
+          <RadioButtonLabel htmlFor="RUB" checked>
+            RUB
+          </RadioButtonLabel>
+        </RadioButtonFirstChild>
+
+        <RadioBoxContainer>
+          <RadioButtonInput
+            type="radio"
+            id="USD"
+            className="radiobox__input"
+            checked={false}
+            disabled
+          />
+          <RadioButtonLabel htmlFor="USD">USD</RadioButtonLabel>
+        </RadioBoxContainer>
+
+        <RadioButtonLastChild>
+          <RadioButtonInput
+            type="radio"
+            id="EUR"
+            className="radiobox__input"
+            checked={false}
+            disabled
+          />
+          <RadioButtonLabel htmlFor="EUR">EUR</RadioButtonLabel>
+        </RadioButtonLastChild>
+      </InputsBlockDiv>
+    </WrapperDiv>
+  );
+}
+
 const Div = styled.div`
   font-family: Open Sans;
   font-style: normal;
@@ -83,49 +125,3 @@ const RadioButtonFirstChild = styled(RadioButtonLabel)`
 const RadioButtonLastChild = styled(RadioButtonLabel)`
   border-radius: 0 5px 5px 0;
 `;
-
-export default function NoCurrencyPanel() {
-  return (
-    <WrapperDiv>
-      <HeadingDiv>
-        Текущий курс ЦБ :
-        <br /> <NoDataTextDiv className="noData">НЕТ ДАННЫХ</NoDataTextDiv>
-      </HeadingDiv>
-      <HeadingDiv>Показать стоимость в другой валюте:</HeadingDiv>
-      <InputsBlockDiv>
-        <RadioButtonFirstChild>
-          <RadioButtonInput type="radio" id="RUB" className="radiobox__input" checked disabled />
-          <RadioButtonLabel htmlFor="RUB" checked>
-            RUB
-          </RadioButtonLabel>
-        </RadioButtonFirstChild>
-
-        <RadioBoxContainer>
-          <RadioButtonInput
-            type="radio"
-            id="USD"
-            className="radiobox__input"
-            checked={false}
-            disabled
-          />
-          <RadioButtonLabel htmlFor="USD">
-            USD
-          </RadioButtonLabel>
-        </RadioBoxContainer>
-
-        <RadioButtonLastChild>
-          <RadioButtonInput
-            type="radio"
-            id="EUR"
-            className="radiobox__input"
-            checked={false}
-            disabled
-          />
-          <RadioButtonLabel htmlFor="EUR">
-            EUR
-          </RadioButtonLabel>
-        </RadioButtonLastChild>
-      </InputsBlockDiv>
-    </WrapperDiv>
-  );
-}

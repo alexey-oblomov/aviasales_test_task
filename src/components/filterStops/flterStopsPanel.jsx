@@ -3,6 +3,84 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import img from './img/Shape.png';
 
+export default function FilterStops(props) {
+  const { handleChangeFilterStops, stopsData } = props;
+
+  return (
+    <WrapperDiv>
+      <HeadingDiv>Количество пересадок</HeadingDiv>
+      <InputsBlockDiv>
+        <CheckboxContainer>
+          <CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              id="all"
+              onChange={handleChangeFilterStops}
+              checked={stopsData.all}
+            />
+            <CheckboxBox checked={stopsData.all} />
+            Все
+          </CheckboxLabel>
+        </CheckboxContainer>
+
+        <CheckboxContainer>
+          <CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              id="noStops"
+              onChange={handleChangeFilterStops}
+              checked={stopsData.noStops}
+            />
+            <CheckboxBox checked={stopsData.noStops} />
+            Без пересадок
+          </CheckboxLabel>
+        </CheckboxContainer>
+
+        <CheckboxContainer>
+          <CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              id="oneStop"
+              onChange={handleChangeFilterStops}
+              checked={stopsData.oneStop}
+            />
+            <CheckboxBox checked={stopsData.oneStop} />1 пересадка
+          </CheckboxLabel>
+        </CheckboxContainer>
+
+        <CheckboxContainer>
+          <CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              id="twoStops"
+              onChange={handleChangeFilterStops}
+              checked={stopsData.twoStops}
+            />
+            <CheckboxBox checked={stopsData.twoStops} />2 пересадки
+          </CheckboxLabel>
+        </CheckboxContainer>
+
+        <CheckboxContainer>
+          <CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              id="threeStops"
+              onChange={handleChangeFilterStops}
+              checked={stopsData.threeStops}
+            />
+            <CheckboxBox checked={stopsData.threeStops} />3 пересадки
+          </CheckboxLabel>
+        </CheckboxContainer>
+      </InputsBlockDiv>
+    </WrapperDiv>
+  );
+}
+
+FilterStops.propTypes = {
+  stopsData: PropTypes.object,
+  handleChangeFilterStops: PropTypes.func,
+};
+
 const Div = styled.div`
   font-family: Open Sans;
   font-style: normal;
@@ -90,81 +168,3 @@ const CheckboxBox = styled.span`
   align-self: center;
   background-size: 12 auto;
 `;
-
-export default function FilterStops(props) {
-  const { handleChangeFilterStops, stopsData } = props;
-
-  return (
-    <WrapperDiv>
-      <HeadingDiv>Количество пересадок</HeadingDiv>
-      <InputsBlockDiv>
-        <CheckboxContainer>
-          <CheckboxLabel>
-            <CheckboxInput
-              type="checkbox"
-              id="all"
-              onChange={handleChangeFilterStops}
-              checked={stopsData.all}
-            />
-            <CheckboxBox checked={stopsData.all} />
-            Все
-          </CheckboxLabel>
-        </CheckboxContainer>
-
-        <CheckboxContainer>
-          <CheckboxLabel>
-            <CheckboxInput
-              type="checkbox"
-              id="noStops"
-              onChange={handleChangeFilterStops}
-              checked={stopsData.noStops}
-            />
-            <CheckboxBox checked={stopsData.noStops} />
-            Без пересадок
-          </CheckboxLabel>
-        </CheckboxContainer>
-
-        <CheckboxContainer>
-          <CheckboxLabel>
-            <CheckboxInput
-              type="checkbox"
-              id="oneStop"
-              onChange={handleChangeFilterStops}
-              checked={stopsData.oneStop}
-            />
-            <CheckboxBox checked={stopsData.oneStop} />1 пересадка
-          </CheckboxLabel>
-        </CheckboxContainer>
-
-        <CheckboxContainer>
-          <CheckboxLabel>
-            <CheckboxInput
-              type="checkbox"
-              id="twoStops"
-              onChange={handleChangeFilterStops}
-              checked={stopsData.twoStops}
-            />
-            <CheckboxBox checked={stopsData.twoStops} />2 пересадки
-          </CheckboxLabel>
-        </CheckboxContainer>
-
-        <CheckboxContainer>
-          <CheckboxLabel>
-            <CheckboxInput
-              type="checkbox"
-              id="threeStops"
-              onChange={handleChangeFilterStops}
-              checked={stopsData.threeStops}
-            />
-            <CheckboxBox checked={stopsData.threeStops} />3 пересадки
-          </CheckboxLabel>
-        </CheckboxContainer>
-      </InputsBlockDiv>
-    </WrapperDiv>
-  );
-}
-
-FilterStops.propTypes = {
-  stopsData: PropTypes.object,
-  handleChangeFilterStops: PropTypes.func,
-};
